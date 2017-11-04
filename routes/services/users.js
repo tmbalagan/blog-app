@@ -52,6 +52,7 @@ exports.signIn = function (req, res) {
             } else {
                 console.log('in result');
                 req.flash('success_msg', 'login successfully');
+                req.flash('welcome_msg', req.session.name);
                 res.redirect('/dashboard');
             }
         });
@@ -60,3 +61,12 @@ exports.signIn = function (req, res) {
     }
 
 }
+
+/*-----------------------logout export---------------------------------*/
+
+exports.logout = function(req, res){
+    var message = '';
+    req.session.destroy(function(err) {
+        res.redirect("/");
+    })
+};

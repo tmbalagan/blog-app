@@ -54,7 +54,7 @@ users.signIn = function(req, callback){
                     if ((name == result[0].name) && (password == result[0].password)) {
                         /*-----------------------req.session---------------------------------*/
                         req.session.name = result[0].name;
-                        req.session.user = result[0];
+                        req.session.users = result[0];
                         //req.session.user this specify you can other router other else you get undefined
                         /*-----------------------req.session---------------------------------*/
                         callback(err, result);

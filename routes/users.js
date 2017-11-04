@@ -1,17 +1,39 @@
 var express = require('express');
 var router = express.Router();
-var users = require('../routes/services/users')
+var users = require('../routes/services/users');
+var create = require('../routes/services/create')
+var blog = require('../routes/services/dashboard')
 /* GET users listing. */
+
+/* --------------------signup get --------------------------*/
 router.get('/signUp', function (req, res) {
     res.render('signUp', {title: 'signUp Page',signUp_errors: req.flash('signUp_errors'),name_exit:req.flash('name_exit')});
 });
+
+/* --------------------sign-up post --------------------------*/
 router.post('/sign-up',users.signUp);
+
+/* --------------------signin get --------------------------*/
 router.get('/', function (req, res) {
     res.render('signIn',{title: 'signIn Page', signIn_errors: req.flash('signIn_errors'), error_credential:req.flash('error_credential')});
 });
+
+/* --------------------sigin post --------------------------*/
 router.post('/signIn',users.signIn);
 
-router.get('/dashboard', function(req, res) {
-    res.render('dashboard');
+/* --------------------dashboard get--------------------------*/
+router.get('/dashboard', blog.userBlog);
+/* --------------------create page get --------------------------*/
+router.get('/dashboard/create', function(req, res) {
+    res.render('create');
 });
+
+/* -------------------- post create --------------------------*/
+
+router.post('/create',create.createBlog);
+
+
+/* -------------------- get blog read --------------------------*/
+router.get('/:title',blog.readBlog);
+
 module.exports = router;

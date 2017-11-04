@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            {{# each data}}
+                <div class="card  mb-2">
+                    <h4 class="card-header blog-title">{{this.title}}</h4>
+
+                    <div class="card-body">
+                        <p class="card-text">{{this.text}}</p>
+                    </div>
+                </div>
+            {{/each}}
+            <div class="col-md-5">
+                <form name="comment" method="post" action="/comment" role="form">
+                    <div class="form-group">
+                        <label for="name">User Name</label>
+                        <input type="text" class="form-control" id="name"
+                               placeholder="Enter user Name"
+                               name="name" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="text">Comment</label>
+                        <textarea class="form-control" id="comment" rows="7" name="comment"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-info">POST</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
