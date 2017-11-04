@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <nav class="navbar navbar-light bg-light border-nav">
+        <span class="navbar-brand mb-0 h4">Blog-App SignUp Page</span>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4 mt-5 border-form">
+                {{# if signUp_errors}}
+                    {{# each signUp_errors }}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{this.msg}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {{/each}}
+                {{/if}}
+
+                {{# if name_exit}}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{name_exit}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                {{/if}}
+
+                <form name="signUp" method="post" action="/sign-up" role="form">
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" id="email"
+                               placeholder="Enter email"
+                               name="email" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">User Name</label>
+                        <input type="text" class="form-control" id="name"
+                               placeholder="Enter user Name"
+                               name="name" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Password"
+                               name="password" autocomplete="off">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </form>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+    </div>
+</div>
+
+
+

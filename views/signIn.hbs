@@ -1,0 +1,51 @@
+<div class="container-fluid">
+    <nav class="navbar navbar-light bg-light border-nav">
+        <span class="navbar-brand mb-0 h4">Blog-App SignIn Page</span>
+        <a href="signUp" class="h6">SignUp Page</a>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4 mt-5 border-form">
+                {{# if signIn_errors}}
+                    {{# each signIn_errors }}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{this.msg}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {{/each}}
+                {{/if}}
+
+                {{# if error_credential}}
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            {{error_credential}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                {{/if}}
+
+                <form name="signIn" method="post" action="/signIn" role="form">
+                    <div class="form-group">
+                        <label for="name">User Name</label>
+                        <input type="text" class="form-control" id="name"
+                               placeholder="Enter user Name"
+                               name="name" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Password"
+                               name="password" autocomplete="off">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+                </form>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+    </div>
+</div>
+
+
+
