@@ -7,34 +7,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
 
 </head>
 <body>
 {{{body}}}
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
 <script>
     $(document).ready(function () {
-        $('.more_text').on('click', function () {
-            var title = $(this).parent().prev().text();
-//            console.log('title = ',title);
+//        $('.more_text').on('click', function () {
+//            var title = $(this).parent().prev().text();
+//            $.ajax({
+//                type: 'GET',
+//                url: 'http://localhost:3000/read'+title,
+//                success: function (data) {
+//                    console.log('data         = ',data);
+//                },error: function(error){
+//                    console.l0g('in er ***************8')
+//                }
+//            });
+//        });
+        /*-----------------------------------------------------------------*/
+        var form = $('#comments');
+        form.on('submit', function (e) {
+            e.preventDefault();
             $.ajax({
-                type: 'GET',
-                url: 'http://localhost:3000/read'+title,
+                url: 'http://localhost:3000/comments',
+                type: 'POST',
+                cache: false,
+                data: form.serialize(), //form serizlize data
                 success: function (data) {
-                    console.log('data         = ',data);
-//                    window.location.href = "http://localhost:8080/dashboard/:title";
-                },error: function(error){
-                    console.l0g('in er ***************8')
+                    console.log('data999999999999 = ', data);
+                    (function () {
+                        $.get("http://localhost:3000/comments/get", function (result) {
+                            for (var i = 0; i < result.data.length; i++) {
+                                var text =  result.data[i].text;
+                                $('#comment_block').append(text);
+
+                                var user =  result.data[i].user;
+                                $('#user').append(user);
+
+                                var date =  result.data[i].date;
+                                $('#date').append(date);
+                            }
+                        });
+                    })();
+//                    form.reset();
+                },
+                error: function (e) {
+                    alert(e);
                 }
             });
         });
+        (function () {
+            $.get("http://localhost:3000/comments/get", function (result) {
+                for (var i = 0; i < result.data.length; i++) {
+                    var text =  result.data[i].text;
+                    $('#comment_block').append(text);
+
+                    var user =  result.data[i].user;
+                    $('#user').append(user);
+
+                    var date =  result.data[i].date;
+                    $('#date').append(date);
+                }
+            });
+        })();
+        /*-----------------------------------------------------*/
+
+
     });
 </script>
 </body>

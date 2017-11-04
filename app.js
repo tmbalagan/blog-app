@@ -10,6 +10,7 @@ var expressSession = require('express-session');
 var MySQLStore = require('express-mysql-session')(expressSession);
 var mysql = require('mysql');
 var flash = require('connect-flash');
+var cors = require('cors');
 var users = require('./routes/users');
 
 var app = express();
@@ -58,6 +59,7 @@ var options = {
 };
 var sessionStore = new MySQLStore(options);
 
+app.use(cors());
 
 // view engine setup
 app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'layout', layoutsDir: __dirname + '/views/layout/'}));

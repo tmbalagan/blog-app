@@ -12,7 +12,7 @@
                 </div>
             {{/each}}
             <div class="col-md-5">
-                <form name="comment" method="post" action="/comment" role="form">
+                <form name="comment" method="post" action="" role="form" id="comments">
                     <div class="form-group">
                         <label for="name">User Name</label>
                         <input type="text" class="form-control" id="name"
@@ -23,10 +23,25 @@
                         <label for="text">Comment</label>
                         <textarea class="form-control" id="comment" rows="7" name="comment"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-info">POST</button>
+                    <button type="submit" class="btn btn-info counter">POST</button>
                 </form>
             </div>
         </div>
         <div class="col-md-1"></div>
+        <!--   ------------------------------>
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="card" style="width: 20rem;" id="counter">
+                <div class="card-header text-info" id="user">
+                </div>
+                <div class="card-body">
+                    <p class="card-text" id="comment_block"></p>
+                </div>
+                <div class="card-footer" id="date">
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4"></div>
     </div>
 </div>

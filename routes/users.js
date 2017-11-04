@@ -3,6 +3,7 @@ var router = express.Router();
 var users = require('../routes/services/users');
 var create = require('../routes/services/create')
 var blog = require('../routes/services/dashboard')
+var comments = require('../routes/services/comments')
 /* GET users listing. */
 
 /* --------------------signup get --------------------------*/
@@ -34,6 +35,13 @@ router.post('/create',create.createBlog);
 
 
 /* -------------------- get blog read --------------------------*/
-router.get('/:title',blog.readBlog);
+router.get('/dashboard/read/:title',blog.readBlog);
+
+
+/* -------------------- comment post --------------------------*/
+router.post('/comments',comments.save);
+
+/* -------------------- comment get --------------------------*/
+router.get('/comments/get',comments.show);
 
 module.exports = router;
