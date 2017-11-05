@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+var fileUpload = require('express-fileupload');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -11,7 +12,7 @@ var MySQLStore = require('express-mysql-session')(expressSession);
 var mysql = require('mysql');
 var flash = require('connect-flash');
 var cors = require('cors');
-var users = require('./routes/users');
+var users = require('./routes/routes');
 
 var app = express();
 
@@ -74,6 +75,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(expressValidator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(fileUpload());
 
 app.use(expressSession({
     secret: 'pingpong',

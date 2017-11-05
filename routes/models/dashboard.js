@@ -7,7 +7,7 @@ blog.userBlog = function(req, callback){
     var sess = req.session;
     var name = req.session.name;
     console.log('************* = ',name);
-    var sql = 'select name, title, text, date from blog WHERE `name`= ?';
+    var sql = 'select * from blog WHERE `name`= ?';
     db.query(sql, [name],function (err, result) {
         //req.session.title = result[0].title;
         //console.log('!!!!!!!!!!!! = ',req.session.title);
@@ -22,10 +22,16 @@ blog.readBlog = function(req, callback){
     var title = req.params.title;
     req.session.title = title;
     console.log('************* = ',title);
-    var sql = 'select  name, title, text, date from blog WHERE `title`= ?';
+    var sql = 'select * from blog WHERE `title`= ?';
     db.query(sql, [title],function (err, result) {
         callback(err,result);
     });
 }
 
+blog.all = function(req, callback){
+    var sql = 'select * from blog';
+    db.query(sql,function (err, result) {
+        callback(err,result);
+    });
+}
 module.exports = blog;

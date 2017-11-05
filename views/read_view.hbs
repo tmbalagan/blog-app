@@ -2,15 +2,20 @@
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">
-            {{# each data}}
-                <div class="card  mb-2">
-                    <h4 class="card-header blog-title">{{this.title}}</h4>
+            {{# if data}}
+                {{# each data}}
+                    <div class="card  mb-2">
+                        <h4 class="card-header blog-title">{{this.title}}</h4>
+                        <img class="card-img-top" src="http://localhost:3000/images/{{this.image}}"
+                             alt="Card image cap">
 
-                    <div class="card-body">
-                        <p class="card-text">{{this.text}}</p>
+                        <div class="card-body">
+                            <p class="card-text">{{this.text}}</p>
+                        </div>
                     </div>
-                </div>
-            {{/each}}
+                {{/each}}
+            {{/if}}
+
             <div class="col-md-5">
                 <form name="comment" method="post" action="" role="form" id="comments">
                     <div class="form-group">
@@ -30,9 +35,10 @@
         <div class="col-md-1"></div>
         <!--   ------------------------------>
         <div class="col-md-4"></div>
-        <div class="col-md-4">
-            <div class="card" style="width: 20rem;" id="counter">
+    <div class="col-md-4">
+            <div class="card comment_count" style="width: 20rem;">
                 <div class="card-header text-info" id="user">
+                    Name:
                 </div>
                 <div class="card-body">
                     <p class="card-text" id="comment_block"></p>

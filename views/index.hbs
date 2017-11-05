@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <nav class="navbar navbar-light bg-light border-nav">
+        <span class="navbar-brand mb-0 h4">Simple Blog App</span>
+        <button type="button" class="btn btn-success">
+            <a href="signUp" class="h6">SignUp</a>
+        </button>
+        <button type="button" class="btn btn-info">
+            <a href="signIn" class="h6">SignIn</a>
+        </button>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="card-columns">
+                {{# each data}}
+                    <div class="card mt-4 mb-2">
+                        <h4 class="card-header blog-title">{{this.title}}</h4>
+                        <img class="card-img-top" src="http://localhost:3000/images/{{this.image}}"
+                             alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text" style="height: 200px;overflow-y: hidden">{{this.text}}</p>
+                            <a href="/dashboard/read/{{this.title}}" class="btn btn-primary more_text">more</a>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

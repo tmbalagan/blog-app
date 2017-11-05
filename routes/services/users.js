@@ -20,7 +20,7 @@ exports.signUp = function (req, res) {
                 req.flash('name_exit', "username already exists");
                 res.redirect('/signUp');
             }else {
-                res.redirect('/');
+                res.redirect('/signIn');
             }
         });
     }

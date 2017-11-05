@@ -3,6 +3,10 @@
         <a href="dashboard/create">
             <button type="button" class="btn btn-info">Create Blog</button>
         </a>
+        <a href="/">
+            <button type="button" class="btn btn-secondary">Home Page</button>
+        </a>
+
     </h5>
     <h5>Welcome {{welcome_msg}}</h5>
     <a href="/">
@@ -13,19 +17,21 @@
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8 mt-5">
-                {{# each data}}
-                    <div class="card  mb-2">
-                        <h4 class="card-header blog-title">{{this.title}}</h4>
+            {{# each data}}
+                <div class="card  mb-2">
+                    <h4 class="card-header blog-title">{{this.title}}</h4>
+                    <img class="card-img-top" src="http://localhost:3000/images/{{this.image}}" alt="Card image cap"
+                         style="height: 300px;">
 
-                        <div class="card-body">
-                            <p class="card-text">{{this.text}}</p>
-                            <a href="/dashboard/read/{{this.title}}" class="btn btn-primary more_text">more</a>
-                        </div>
-                        <div class="card-footer text-muted">{{this.date}}
-                            <span class="float-right">Author: {{this.name}}</span>
-                        </div>
+                    <div class="card-body">
+                        <p class="card-text">{{this.text}}</p>
+                        <a href="/dashboard/read/{{this.title}}" class="btn btn-primary more_text">more</a>
                     </div>
-                {{/each}}
+                    <div class="card-footer text-muted">{{this.date}}
+                        <span class="float-right">Author: {{this.name}}</span>
+                    </div>
+                </div>
+            {{/each}}
         </div>
         <div class="col-md-2"></div>
     </div>

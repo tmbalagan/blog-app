@@ -22,6 +22,7 @@ exports.show = function (req, res) {
             console.log('result');
             console.log('response = ',result);
             event.emit('JsonResponse', req, res, result);
+            //res.render('read_view',{data:result})
         }
     });
 }
